@@ -1,5 +1,7 @@
 # DeapFrontEnd
 
+[![Node.js CI](https://github.com/darthrevanyunka/deap-frontend/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/darthrevanyunka/deap-frontend/actions/workflows/node.js.yml)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
 ## Development server
