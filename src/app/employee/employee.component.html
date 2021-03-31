@@ -1,12 +1,12 @@
 <div class="row">
 
   <div class="text-center">
-    <h1>DEAP PROJECT V1</h1>
-    <h2>Register Employee</h2>
+    <h1 style="padding:20px; margin-top:0px;" class="bg-primary">DEAP PROJECT V1</h1>
+    <h2 style="padding-bottom:25px;">Register Employee</h2>
   </div>
 
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <form>
+    <form  (ngSubmit)="onCreateEmployee(f)" #f="ngForm">
 
       <div class="form-group">
         <label for="email">E-Mail</label>
@@ -14,9 +14,11 @@
           type="email"
           id="email"
           class="form-control"
-          ngModel name="email"
+          ngModel
+          name="email"
+          placeholder="Enter your email adress"
           required
-          email>
+          >
       </div>
 
       <div class="form-group">
@@ -25,20 +27,24 @@
           type="input"
           id="firstName"
           class="form-control"
-          ngModel name="firstName"
+          ngModel
+          name="firstName"
+          placeholder="Enter your first name"
           required
-          email>
+          >
       </div>
 
       <div class="form-group">
         <label for="lastName">Last Name</label>
         <input
-          type="email"
+          type="input"
           id="lastName"
           class="form-control"
-          ngModel name="lastName"
+          ngModel
+          name="lastName"
+          placeholder="Enter your last name"
           required
-          email>
+          >
       </div>
 
       <div class="form-group">
@@ -50,9 +56,9 @@
           ngModel
           name="password"
           required
+          placeholder="Enter a password"
           minlength="6">
       </div>
-
 
       <div class="form-group">
         <label for="confirmPassword">Confirm Password</label>
@@ -62,10 +68,10 @@
           class="form-control"
           ngModel
           name="confirmPassword"
+          placeholder="Confirm above password"
           required
           minlength="6">
       </div>
-
 
       <div>
         <button class="btn btn-primary" type="submit" >Register Employee</button>
