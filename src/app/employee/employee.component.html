@@ -1,0 +1,76 @@
+<div class="row">
+
+  <div class="text-center">
+    <h1>DEAP PROJECT V1</h1>
+    <h2>Register Employee</h2>
+  </div>
+
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <form>
+
+      <div class="form-group">
+        <label for="email">E-Mail</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          ngModel name="email"
+          required
+          email>
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input
+          type="input"
+          id="firstName"
+          class="form-control"
+          ngModel name="firstName"
+          required
+          email>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input
+          type="email"
+          id="lastName"
+          class="form-control"
+          ngModel name="lastName"
+          required
+          email>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          ngModel
+          name="password"
+          required
+          minlength="6">
+      </div>
+
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          ngModel
+          name="confirmPassword"
+          required
+          minlength="6">
+      </div>
+
+
+      <div>
+        <button class="btn btn-primary" type="submit" >Register Employee</button>
+      </div>
+
+    </form>
+  </div>
+</div>
