@@ -42,8 +42,8 @@ export class EmployeeComponent implements OnInit {
         console.log(employeeJson);
 
         //post request to create employee
-        this.http.post('localhost/api/adduser',
-        employeeJson
+        this.http.post('http://localhost:8080/employee/registration',
+        employee
         ).subscribe(responseData => {
             console.log(responseData);
         });
