@@ -1,5 +1,8 @@
 # DeapFrontEnd
 
+[![Node.js CI](https://github.com/darthrevanyunka/deap-frontend/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/darthrevanyunka/deap-frontend/actions/workflows/node.js.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=darthrevanyunka_deap-frontend&metric=alert_status)](https://sonarcloud.io/dashboard?id=darthrevanyunka_deap-frontend)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.6.
 
 ## Development server
