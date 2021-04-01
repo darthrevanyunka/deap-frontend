@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { EncryptionService } from '../services/encryption.service';
 
 @Component({
   selector: 'app-employee',
   templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  styleUrls: ['./employee.component.css'],
+  providers: [EncryptionService]
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private encryptionService: EncryptionService) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +27,20 @@ export class EmployeeComponent implements OnInit {
 
     //check whether passwords match
     if(password == confPassword){
+
+        const encryptedPassword = this.encryptionService.encrypt(password);
+
+        console.log("password: " + password);
+        console.log("Encrypted AES256 Password : " + encryptedPassword);
+
+        const decryptedPassword = this.encryptionService.decrypt(encryptedPassword);
+        console.log("Decrypted Password: " + decryptedPassword);
+
+        const passwordBase64 = btoa(encryptedPassword);
+        console.log("Encrypted Password as base 64:" + passwordBase64);
+
+
+
 
         //create employee object
         const employee = {
