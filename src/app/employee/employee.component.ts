@@ -47,7 +47,7 @@ export class EmployeeComponent implements OnInit {
           email: email,
           firstName: firstName,
           lastName: lastName,
-          password: password
+          password: passwordBase64
         }
 
         //convert employee object to JSON
