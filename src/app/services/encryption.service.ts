@@ -6,16 +6,16 @@ import * as CryptoJS from 'crypto-js';
 })
 export class EncryptionService {
 
-  secretKey = "NcRfUjXn2r5u7x!A%D*G-KaPdSgVkYp3";
+  secretKey = "my_super_secret_key_ho_ho_ho";
 
   constructor() { }
 
   encrypt(value: string): string {
-    return CryptoJS.AES.encrypt(value, this.secretKey, CryptoJS.mode.ECB).toString();
+    return CryptoJS.AES.encrypt(value, this.secretKey, { mode: CryptoJS.mode.ECB}).toString();
   }
 
   decrypt(textToDecrypt: string) {
-    return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey, CryptoJS.mode.ECB).toString(CryptoJS.enc.Utf8);
+    return CryptoJS.AES.decrypt(textToDecrypt, this.secretKey, { mode: CryptoJS.mode.ECB}).toString(CryptoJS.enc.Utf8);
   }
 
 }

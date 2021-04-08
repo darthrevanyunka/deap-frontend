@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { EncryptionService } from '../services/encryption.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-employee',
@@ -10,6 +11,9 @@ import { EncryptionService } from '../services/encryption.service';
   providers: [EncryptionService]
 })
 export class EmployeeComponent implements OnInit {
+
+  currentApplicationVersion = environment.appVersion;
+
 
   constructor(private http: HttpClient, private encryptionService: EncryptionService) { }
 
@@ -24,7 +28,6 @@ export class EmployeeComponent implements OnInit {
     const lastName = formEmployee.lastName;
     const password = formEmployee.password;
     const confPassword = formEmployee.confirmPassword;
-
     //check whether passwords match
     if(password == confPassword){
 
