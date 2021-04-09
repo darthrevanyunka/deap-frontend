@@ -32,10 +32,9 @@ export class EmployeeComponent implements OnInit {
   onDeleteEmployee(deleteForm){
     const formDelete = deleteForm.value;
     const email = formDelete.emailDel;
-    console.log(email);
+    const url = `http://localhost:8080/employee/delete/${email}`;
 
-    this.http.post('http://localhost:8080/employee/delete',
-      email
+    this.http.delete(url,
       ).subscribe(responseData => {
        console.log(responseData);
       });
