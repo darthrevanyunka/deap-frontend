@@ -3,9 +3,30 @@
   <div class="text-center">
     <h1 style="padding:20px; margin-top:0px;" class="bg-primary">DEAP PROJECT V {{currentApplicationVersion}}</h1>
     <h2 style="padding-bottom:25px;">Register Employee</h2>
+    <hr>
+  </div>
+
+  <div>
+  <div class="row">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <button class="btn btn-primary" (click)="onShowAll()" >Show Employees</button>
+
+      <div *ngFor="let employeeEl of employee; let i = index">
+        <a  style=" cursor: pointer;" class="list-group-item clearfix" >
+          <div class="pull-left">
+            <h4 class="list-group-item-heading">{{ employeeEl.firstName }}</h4>
+            <p class="list-group-item-text">{{ employeeEl.lastName }}</p>
+            <p class="list-group-item-text">{{ employeeEl.email }}</p>
+          </div>
+          <span class="pull-right">
+    </span>
+        </a>      </div>
+      </div>
+    </div>
   </div>
 
   <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <hr>
     <form  (ngSubmit)="onCreateEmployee(f)" #f="ngForm">
 
       <div class="form-group">
@@ -79,4 +100,34 @@
 
     </form>
   </div>
+
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <hr>
+    <form  (ngSubmit)="onDeleteEmployee(g)" #g="ngForm">
+      <div class="form-group">
+        <label for="email">Enter users Email to delete User</label>
+        <input
+          type="emailDel"
+          id="emailDel"
+          class="form-control"
+          ngModel
+          name="emailDel"
+          placeholder="Enter user Email to delete"
+          required
+        >
+      </div>
+      <div>
+        <button class="btn btn-primary" type="submit" >Delete Employee</button>
+      </div>
+
+    </form>
+  </div>
+
+
+
+
+
+
+
+
 </div>

@@ -3,6 +3,7 @@ import { FormsModule }   from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { EncryptionService } from '../services/encryption.service';
 import { environment } from '../../environments/environment';
+import { Employee } from '../shared/employee.model'
 
 @Component({
   selector: 'app-employee',
@@ -13,11 +14,30 @@ import { environment } from '../../environments/environment';
 export class EmployeeComponent implements OnInit {
 
   currentApplicationVersion = environment.appVersion;
-
+  employee : Employee[] = [];
 
   constructor(private http: HttpClient, private encryptionService: EncryptionService) { }
 
+  onShowAll(){
+        this.http.get<Employee[]>('http://localhost:8080/employee/get',
+        ).subscribe(responseData => {
+            this.employee = responseData;
+            console.log(this.employee);
+        });
+  }
+
   ngOnInit(): void {
+  }
+
+  onDeleteEmployee(deleteForm){
+    const formDelete = deleteForm.value;
+    const email = formDelete.emailDel;
+    const url = `http://localhost:8080/employee/delete/${email}`;
+
+    this.http.delete(url,
+      ).subscribe(responseData => {
+       console.log(responseData);
+      });
   }
 
   onCreateEmployee(employeeForm){
@@ -42,9 +62,6 @@ export class EmployeeComponent implements OnInit {
         const passwordBase64 = btoa(encryptedPassword);
         console.log("Encrypted Password as base 64:" + passwordBase64);
 
-
-
-
         //create employee object
         const employee = {
           email: email,
@@ -52,12 +69,10 @@ export class EmployeeComponent implements OnInit {
           lastName: lastName,
           password: passwordBase64
         }
+        console.log(employee);
 
         //convert employee object to JSON
         const employeeJson = JSON.stringify(employee);
-
-        //loggers
-        console.log(employee);
         console.log(employeeJson);
 
         //post request to create employee
