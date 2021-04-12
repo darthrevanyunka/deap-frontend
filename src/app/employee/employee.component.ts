@@ -32,20 +32,6 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  reloadEmployees(){
-      this.http.get<Employee[]>('http://localhost:8080/employee/get',
-      ).subscribe(responseData => {
-      this.employee = responseData;
-      console.log(this.employee);
-      });
-
-      this.http.get<Employee[]>('http://localhost:8080/employee/get',
-      ).subscribe(responseData => {
-      this.employee = responseData;
-      console.log(this.employee);
-      });
-  }
-
   onDeleteEmployee(deleteForm){
     const formDelete = deleteForm.value;
     const email = formDelete.emailDel;
@@ -56,7 +42,14 @@ export class EmployeeComponent implements OnInit {
        console.log(responseData);
       });
 
-     this.reloadEmployees();
+    var contains = false;
+    for(var i=0; i<this.employee.length; i++){
+      if(this.employee[i].email === email){
+      this.employee.splice(i, 1);
+      contains = true;
+      };
+    }
+    if(contains===false) alert("No such Email");
   }
 
   onCreateEmployee(employeeForm){
@@ -100,8 +93,18 @@ export class EmployeeComponent implements OnInit {
         ).subscribe(responseData => {
             console.log(responseData);
         });
-        this.employee.push(newEmployee);
-        console.log(newEmployee);
+
+        var containsEmail = false;
+
+        for(var i=0; i<this.employee.length; i++){
+         if(this.employee[i].email === email){
+           containsEmail = true;
+           }
+         }
+
+         if(containsEmail) alert("Email Already Taken");
+         else this.employee.push(newEmployee);
+
     }else{
       console.log("Passwords do not match");
       alert("Passwords do not match");
