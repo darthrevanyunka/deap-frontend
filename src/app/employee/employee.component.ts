@@ -15,6 +15,7 @@ export class EmployeeComponent implements OnInit {
 
   currentApplicationVersion = environment.appVersion;
   employee : Employee[] = [];
+  showAll = false;
 
   constructor(private http: HttpClient, private encryptionService: EncryptionService) { }
 
@@ -24,9 +25,25 @@ export class EmployeeComponent implements OnInit {
             this.employee = responseData;
             console.log(this.employee);
         });
+        if(this.showAll==true) this.showAll = false;
+        else this.showAll = true;
   }
 
   ngOnInit(): void {
+  }
+
+  reloadEmployees(){
+      this.http.get<Employee[]>('http://localhost:8080/employee/get',
+      ).subscribe(responseData => {
+      this.employee = responseData;
+      console.log(this.employee);
+      });
+
+      this.http.get<Employee[]>('http://localhost:8080/employee/get',
+      ).subscribe(responseData => {
+      this.employee = responseData;
+      console.log(this.employee);
+      });
   }
 
   onDeleteEmployee(deleteForm){
@@ -38,6 +55,8 @@ export class EmployeeComponent implements OnInit {
       ).subscribe(responseData => {
        console.log(responseData);
       });
+
+     this.reloadEmployees();
   }
 
   onCreateEmployee(employeeForm){
@@ -63,25 +82,26 @@ export class EmployeeComponent implements OnInit {
         console.log("Encrypted Password as base 64:" + passwordBase64);
 
         //create employee object
-        const employee = {
+        const newEmployee = {
           email: email,
           firstName: firstName,
           lastName: lastName,
           password: passwordBase64
         }
-        console.log(employee);
+        console.log(newEmployee);
 
         //convert employee object to JSON
-        const employeeJson = JSON.stringify(employee);
+        const employeeJson = JSON.stringify(newEmployee);
         console.log(employeeJson);
 
         //post request to create employee
         this.http.post('http://localhost:8080/employee/registration',
-        employee
+        newEmployee
         ).subscribe(responseData => {
             console.log(responseData);
         });
-
+        this.employee.push(newEmployee);
+        console.log(newEmployee);
     }else{
       console.log("Passwords do not match");
       alert("Passwords do not match");
