@@ -20,13 +20,13 @@ export class EmployeeComponent implements OnInit {
   constructor(private http: HttpClient, private encryptionService: EncryptionService) { }
 
   onShowAll(){
-        this.http.get<Employee[]>('http://localhost:8080/employee/get',
+        this.http.get<Employee[]>('http://localhost:9090/employee/get',
         ).subscribe(responseData => {
             this.employee = responseData;
-            console.log(this.employee);
         });
         if(this.showAll==true) this.showAll = false;
         else this.showAll = true;
+        console.log(this.employee);
   }
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class EmployeeComponent implements OnInit {
   onDeleteEmployee(deleteForm){
     const formDelete = deleteForm.value;
     const email = formDelete.emailDel;
-    const url = `http://localhost:8080/employee/delete/${email}`;
+    const url = `http://localhost:9090/employee/delete/${email}`;
 
     this.http.delete(url,
       ).subscribe(responseData => {
@@ -88,7 +88,7 @@ export class EmployeeComponent implements OnInit {
         console.log(employeeJson);
 
         //post request to create employee
-        this.http.post('http://localhost:8080/employee/registration',
+        this.http.post('http://localhost:9090/employee/registration',
         newEmployee
         ).subscribe(responseData => {
             console.log(responseData);
