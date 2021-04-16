@@ -16,9 +16,9 @@ export class AppComponent {
   }
 
   authConfig: AuthConfig = {
-      issuer: 'http://localhost:8080/auth/realms/heroes',
+      issuer: 'http://localhost:8080/auth/realms/SpringBootKeycloak',
       redirectUri: window.location.origin + "/",
-      clientId: 'spa-heroes',
+      clientId: 'spa-employee',
       responseType: 'code',
       // at_hash is not present in JWT token
       disableAtHashCheck: true,
