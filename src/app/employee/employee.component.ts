@@ -13,7 +13,6 @@ import { Employee } from '../shared/employee.model'
 })
 export class EmployeeComponent implements OnInit {
 
-  currentApplicationVersion = environment.appVersion;
   employee : Employee[] = [];
   showAll = false;
 
