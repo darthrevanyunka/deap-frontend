@@ -1,7 +1,22 @@
-<button class="btn btn-default" (click)="login()">
-  Login
-</button>
-<button class="btn btn-default" (click)="logoff()">
-  Logout
-</button>
-<app-employee></app-employee>
+<div>
+  <div class="text-center">
+    <h1 style="padding:20px; margin-top:0px; font-size: 50px;" class="bg-primary">DEAP PROJECT V {{currentApplicationVersion}}</h1>
+    <hr>
+  </div>
+  <div class="text-center">
+  <button *ngIf="!logedIn" class="btn btn-primary" (click)="login()" style=" font-size: 25px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px;">
+    Login
+  </button>
+  <button *ngIf="logedIn" class="btn btn-primary" (click)="logoff()" style=" font-size: 25px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px;">
+    Logout
+  </button>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<hr>
+
+<div class="text-center" style="color: grey">
+<h3>developed by dariel solutions </h3>
+</div>
