@@ -18,11 +18,13 @@ export class AppComponent {
 
   currentApplicationVersion = environment.appVersion;
   logedIn = true;
+  logoutURL = "http://localhost:4200"
 
 
   authConfig: AuthConfig = {
       issuer: 'http://localhost:8080/auth/realms/SpringBootKeycloak',
       redirectUri: window.location.origin + "/admin",
+      postLogoutRedirectUri: this.logoutURL,
       clientId: 'spa-employee',
       responseType: 'code',
       disableAtHashCheck: true,
@@ -31,13 +33,10 @@ export class AppComponent {
 
     public login() {
       this.oauthService.initLoginFlow();
-      this.logedIn = true;
     }
 
     public logoff() {
       this.oauthService.logOut();
-      this.router.navigate(['']);
-      this.logedIn = false;
     }
 
     private configure() {
