@@ -3,6 +3,7 @@ import { OAuthService, NullValidationHandler, AuthConfig } from 'angular-oauth2-
 import { JwksValidationHandler } from 'angular-oauth2-oidc';
 import {Router} from '@angular/router';
 import { environment } from '../environments/environment';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,9 @@ export class AppComponent {
 
     public login() {
       this.oauthService.initLoginFlow();
+      this.oauthService.loadUserProfile().then(function(profile) {
+        alert(JSON.stringify(profile, null, "  "));
+    })
     }
 
     public logoff() {

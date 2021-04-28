@@ -23,12 +23,32 @@ export class EmployeeComponent implements OnInit {
         ).subscribe(responseData => {
             this.employee = responseData;
         });
-        if(this.showAll==true) this.showAll = false;
+
+        if(this.showAll==true){
+          this.showAll = false;
+          this.showEdit = false;
+        }
         else this.showAll = true;
         console.log(this.employee);
   }
 
   ngOnInit(): void {
+  }
+
+  showEdit = false;
+  showEmployeeForm = false;
+  employeeToEdit = 0;
+
+  onClickEmployee(){
+    this.showEdit = true;
+  }
+
+  onEditEmployee(i){
+    this.employeeToEdit = i;
+    this.showEmployeeForm = true;
+  }
+
+  onSubmitChangeEmployeeForm(changeForm){
   }
 
   onDeleteEmployee(deleteForm){
