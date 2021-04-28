@@ -34,9 +34,9 @@ export class AppComponent {
 
     public login() {
       this.oauthService.initLoginFlow();
-      this.oauthService.loadUserProfile().then(function(profile) {
-        alert(JSON.stringify(profile, null, "  "));
-    })
+    //   this.oauthService.loadUserProfile().then(function(profile) {
+    //     alert(JSON.stringify(profile, null, "  "));
+    // })
     }
 
     public logoff() {

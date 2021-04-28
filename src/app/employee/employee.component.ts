@@ -15,8 +15,22 @@ export class EmployeeComponent implements OnInit {
 
   employee : Employee[] = [];
   showAll = false;
+  employeeName : Employee[];
+  employeeJson: any;
+  loginName: String;
 
   constructor(private http: HttpClient, private encryptionService: EncryptionService) { }
+
+  onShowName(){
+    this.http.get<Employee[]>('http://localhost:9090/employee/name',
+    ).subscribe(responseData => {
+      this.employeeJson = JSON.stringify(responseData);
+      this.loginName = responseData[0].firstName;
+      console.log(responseData[0].email);
+
+    });
+    console.log();
+}
 
   onShowAll(){
         this.http.get<Employee[]>('http://localhost:9090/employee/get',
@@ -33,6 +47,11 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.onShowName();
+    var Json = JSON.parse(this.employeeJson);
+    console.log(Json.email);
+
+
   }
 
   showEdit = false;
@@ -61,6 +80,7 @@ export class EmployeeComponent implements OnInit {
        console.log(responseData);
       });
 
+    if(this.showAll==true) this.showAll = false;
     var contains = false;
     for(var i=0; i<this.employee.length; i++){
       if(this.employee[i].email === email){
@@ -68,7 +88,7 @@ export class EmployeeComponent implements OnInit {
       contains = true;
       };
     }
-    if(contains===false) alert("No such Email");
+    // if(contains===false) alert("No such Email");
   }
 
   onCreateEmployee(employeeForm){

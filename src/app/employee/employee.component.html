@@ -6,6 +6,7 @@
 
       <button *ngIf="showAll" class="btn btn-primary" (click)="onShowAll()" >Hide Employees List</button>
       <hr *ngIf="showAll">
+      <h1 class="text-center" >Welcome: {{loginName}}</h1>
       <button *ngIf="!showAll" class="btn btn-primary" (click)="onShowAll()" >Show Employees List</button>
 
       <div  *ngFor="let employeeEl of employee; let i = index">
@@ -174,7 +175,7 @@
     <h3 >Delete Employee</h3>
     <form  (ngSubmit)="onDeleteEmployee(g)" #g="ngForm">
       <div class="form-group">
-        <label for="email">Enter users Email to delete User</label>
+        <label for="email">Enter user's keycloak ID to delete User</label>
         <input
           type="emailDel"
           id="emailDel"
