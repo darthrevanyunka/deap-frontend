@@ -4,16 +4,19 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc';
 import {Router} from '@angular/router';
 import { environment } from '../environments/environment';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { Employee } from './shared/employee.model'
+import { HttpClient } from '@angular/common/http';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'deap-front-end';
 
-  constructor(private oauthService: OAuthService, private router: Router) {
+  constructor(private http: HttpClient, private oauthService: OAuthService, private router: Router) {
       this.configure();
   }
 
@@ -21,6 +24,23 @@ export class AppComponent {
   logedIn = true;
   logoutURL = "http://localhost:4200"
 
+   onShowName(){
+      this.http.get<Employee[]>('http://localhost:9090/employee/name',
+      ).subscribe(responseData => {
+        this.employeeJson = JSON.stringify(responseData);
+        this.loginName = responseData[0].firstName;
+      });
+  }
+
+    employee : Employee[] = [];
+    loginName: String;
+    employeeJson: any;
+
+
+    ngOnInit(): void {
+      this.onShowName();
+      var Json = JSON.parse(this.employeeJson);
+    }
 
   authConfig: AuthConfig = {
       issuer: 'http://localhost:8080/auth/realms/SpringBootKeycloak',
@@ -32,11 +52,15 @@ export class AppComponent {
       showDebugInformation: true
     }
 
+    userName: any;
+
     public login() {
       this.oauthService.initLoginFlow();
-    //   this.oauthService.loadUserProfile().then(function(profile) {
-    //     alert(JSON.stringify(profile, null, "  "));
-    // })
+
+      this.userName = this.oauthService.loadUserProfile().then((profile) => {
+        return JSON.parse(JSON.stringify(profile.preferred_username));
+      })
+
     }
 
     public logoff() {
