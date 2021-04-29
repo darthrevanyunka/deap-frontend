@@ -12,7 +12,7 @@
       <button *ngIf="!showDelete" class="btn btn-primary" (click)="onClickDelete()" style="margin-top:60px; font-size: 20px; margin-right:5px;padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px;">Delete Employee</button>
       <button *ngIf="showDelete" class="btn btn-primary" (click)="onClickDelete()" style=" margin-top:60px;font-size: 20px;margin-right:5px; padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px;">Hide Delete Employee</button>
 
-      <hr
+      <hr>
 
       <div  *ngFor="let employeeEl of employee; let i = index">
         <a (click)="onClickEmployee()"*ngIf="showAll" style=" cursor: pointer;" class="list-group-item clearfix" >
