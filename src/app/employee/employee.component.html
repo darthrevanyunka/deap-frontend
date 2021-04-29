@@ -4,6 +4,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
 
+
       <button *ngIf="showAll" class="btn btn-primary" (click)="onShowAll()" style=" margin-top:60px; font-size: 20px;margin-right:5px; margin-left: 170px; padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px;">Hide Employees List</button>
       <button *ngIf="!showAll" class="btn btn-primary" (click)="onShowAll()" style=" margin-top:60px;font-size: 20px; margin-left: 170px;margin-right:5px; padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px;">Show Employees List</button>
       <button *ngIf="!showRegister" class="btn btn-primary" (click)="onClickRegister()" style="margin-top:60px; font-size: 20px; margin-right:5px;padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px;" >Register Employee</button>
@@ -11,7 +12,7 @@
       <button *ngIf="!showDelete" class="btn btn-primary" (click)="onClickDelete()" style="margin-top:60px; font-size: 20px; margin-right:5px;padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px;">Delete Employee</button>
       <button *ngIf="showDelete" class="btn btn-primary" (click)="onClickDelete()" style=" margin-top:60px;font-size: 20px;margin-right:5px; padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px;">Hide Delete Employee</button>
 
-      <hr>
+      <hr
 
       <div  *ngFor="let employeeEl of employee; let i = index">
         <a (click)="onClickEmployee()"*ngIf="showAll" style=" cursor: pointer;" class="list-group-item clearfix" >
