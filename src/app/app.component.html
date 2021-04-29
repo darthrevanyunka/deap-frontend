@@ -1,16 +1,19 @@
 <div>
   <div class="text-center">
     <h1 style="padding:20px; margin-top:0px; font-size: 50px;" class="bg-primary">DEAP PROJECT V {{currentApplicationVersion}}</h1>
-    <hr>
   </div>
   <div class="text-center">
-  <button  class="btn btn-primary" (click)="login()" style=" font-size: 25px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px;">
+  <button  class="btn btn-primary pull-right" (click)="login()" style=" font-size: 25px;margin-right:5px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px;">
     Login
-  </button>|
-  <button class="btn btn-primary" (click)="logoff()" style=" font-size: 25px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px;">
+  </button>
+  <button class="btn btn-primary pull-right pull-up" (click)="logoff()" style=" font-size: 25px; margin-right:5px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; ">
     Logout
   </button>
   </div>
+  <div>
+    <div class="text-center pull-right" style="color: grey; margin-right:7px">
+      <h3>{{loginName}} </h3>
+    </div>  </div>
 </div>
 
 <router-outlet></router-outlet>
