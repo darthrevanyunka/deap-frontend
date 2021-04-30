@@ -24,6 +24,7 @@ export class EmployeeComponent implements OnInit {
   editLastName: String;
   loginName: String;
   userName: String;
+  idEdit: String;
 
 
   constructor(private appComponent: AppComponent, private http: HttpClient, private encryptionService: EncryptionService) { }
@@ -93,6 +94,7 @@ export class EmployeeComponent implements OnInit {
     this.editEmail = formChange.emailEdit;
     this.editFirstName = formChange.firstNameEdit;
     this.editLastName = formChange.lastNameEdit;
+    this.idEdit = formChange.idEdit;
 
     const editEmployee = {
         email: this.editEmail,
@@ -100,13 +102,16 @@ export class EmployeeComponent implements OnInit {
         lastName: this.editLastName
     }
 
-    const url = `http://localhost:9090/employee/update/${this.userName}`;
+    this.employee[this.employeeToEdit].email = this.editEmail;
+    this.employee[this.employeeToEdit].firstName = this.editFirstName;
+    this.employee[this.employeeToEdit].lastName = this.editLastName;
+
+
+    const url = `http://localhost:9090/employee/update/${this.idEdit}`;
 
     this.http.put(url,editEmployee).subscribe(responseData => {
 
     });
-
-
   }
 
   onDeleteEmployee(deleteForm){
