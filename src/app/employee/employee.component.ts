@@ -106,6 +106,7 @@ export class EmployeeComponent implements OnInit {
     this.employee[this.employeeToEdit].firstName = this.editFirstName;
     this.employee[this.employeeToEdit].lastName = this.editLastName;
 
+    if(this.showAll==true) this.showAll = false;
 
     const url = `http://localhost:9090/employee/update/${this.idEdit}`;
 
