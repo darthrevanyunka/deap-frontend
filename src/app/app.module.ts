@@ -20,7 +20,7 @@ import { EmployeeComponent } from './employee/employee.component';
     HttpClientModule,
     OAuthModule.forRoot({
           resourceServer: {
-              allowedUrls: ['http://localhost:9090/employee/'],
+              allowedUrls: ['https://springbootkeycloak.herokuapp.com/employee/'],
               sendAccessToken: true
           }
     })
