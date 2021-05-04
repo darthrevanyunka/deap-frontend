@@ -107,7 +107,7 @@ export class EmployeeComponent implements OnInit {
     this.employee[this.employeeToEdit].lastName = this.editLastName;
 
 
-    const url = `http://localhost:9090/employee/update/${this.idEdit}`;
+    const url = `https://springbootkeycloak.herokuapp.com/employee/update/${this.idEdit}`;
 
     this.http.put(url,editEmployee).subscribe(responseData => {
 
@@ -117,7 +117,7 @@ export class EmployeeComponent implements OnInit {
   onDeleteEmployee(deleteForm){
     const formDelete = deleteForm.value;
     const email = formDelete.emailDel;
-    const url = `http://localhost:9090/employee/delete/${email}`;
+    const url = `https://springbootkeycloak.herokuapp.com/employee/delete/${email}`;
 
     this.http.delete(url,
       ).subscribe(responseData => {
