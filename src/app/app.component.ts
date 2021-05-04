@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   logoutURL = "http://localhost:4200"
 
    onShowName(){
-      this.http.get<Employee[]>('http://localhost:9090/employee/name',
+      this.http.get<Employee[]>('https://springbootkeycloak.herokuapp.com/employee/name',
       ).subscribe(responseData => {
         this.employeeJson = JSON.stringify(responseData);
         this.loginName = responseData[0].firstName;
