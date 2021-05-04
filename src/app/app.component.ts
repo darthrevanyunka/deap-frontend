@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
 
   currentApplicationVersion = environment.appVersion;
   logedIn = true;
-  logoutURL = "http://localhost:4200"
+  logoutURL = "https://frontendkeycloak.herokuapp.com/"
 
    onShowName(){
       this.http.get<Employee[]>('https://springbootkeycloak.herokuapp.com/employee/name',
