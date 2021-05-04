@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     }
 
   authConfig: AuthConfig = {
-      issuer: 'http://localhost:8080/auth/realms/SpringBootKeycloak',
+      issuer: 'https://keycloakkeycloak.herokuapp.com/auth/realms/SpringBootKeycloak',
       redirectUri: window.location.origin + "/admin",
       postLogoutRedirectUri: this.logoutURL,
       clientId: 'spa-employee',
