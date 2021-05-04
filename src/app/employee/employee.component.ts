@@ -30,7 +30,7 @@ export class EmployeeComponent implements OnInit {
   constructor(private appComponent: AppComponent, private http: HttpClient, private encryptionService: EncryptionService) { }
 
   onShowName(){
-    this.http.get<Employee[]>('http://localhost:9090/employee/name',
+    this.http.get<Employee[]>('https://springbootkeycloak.herokuapp.com/employee/name',
     ).subscribe(responseData => {
       this.employeeJson = JSON.stringify(responseData);
       this.loginName = responseData[0].firstName;
@@ -39,7 +39,7 @@ export class EmployeeComponent implements OnInit {
 }
 
   onShowAll(){
-        this.http.get<Employee[]>('http://localhost:9090/employee/get',
+        this.http.get<Employee[]>('https://springbootkeycloak.herokuapp.com/employee/get',
         ).subscribe(responseData => {
             this.employee = responseData;
         });
@@ -168,7 +168,7 @@ export class EmployeeComponent implements OnInit {
         const employeeJson = JSON.stringify(newEmployee);
 
         //post request to create employee
-        this.http.post('http://localhost:9090/employee/registration',
+        this.http.post('https://springbootkeycloak.herokuapp.com/employee/registration',
         newEmployee
         ).subscribe(responseData => {
         });
