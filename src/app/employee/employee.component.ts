@@ -18,6 +18,8 @@ export class EmployeeComponent implements OnInit {
   showAll = false;
   employeeName : Employee[];
   employeeJson: any;
+  isLoading: boolean = true;
+
 
   editEmail: String;
   editFirstName: String;
@@ -30,15 +32,17 @@ export class EmployeeComponent implements OnInit {
   constructor(private appComponent: AppComponent, private http: HttpClient, private encryptionService: EncryptionService) { }
 
   onShowName(){
+    this.isLoading=true;
     this.http.get<Employee[]>('http://localhost:9090/employee/name',
     ).subscribe(responseData => {
       this.employeeJson = JSON.stringify(responseData);
       this.loginName = responseData[0].firstName;
-
     });
+    this.isLoading = false;
 }
 
   onShowAll(){
+      this.isLoading=true;
         this.http.get<Employee[]>('http://localhost:9090/employee/get',
         ).subscribe(responseData => {
             this.employee = responseData;
@@ -50,15 +54,18 @@ export class EmployeeComponent implements OnInit {
           this.showEmployeeForm = false;
         }
         else this.showAll = true;
-
-
-
+//         setTimeout(() => {
+//           this.isLoading = false;
+//         }, 5000);
+        this.isLoading = false;
   }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.onShowName();
     var Json = JSON.parse(this.employeeJson);
     this.userName = this.appComponent.userName;
+    this.isLoading = false;
   }
 
   showEdit = false;
@@ -81,40 +88,43 @@ export class EmployeeComponent implements OnInit {
         else this.showDelete = true;
   }
 
-  onEditEmployee(i){
-    this.employeeToEdit = i;
-    this.editFirstName = this.employee[i].firstName;
-    this.editEmail = this.employee[i].email;
-    this.editLastName = this.employee[i].lastName;
-    this.showEmployeeForm = true;
+    onEditEmployee(i){
+      this.isLoading = true;
+      this.employeeToEdit = i;
+      this.editFirstName = this.employee[i].firstName;
+      this.editEmail = this.employee[i].email;
+      this.editLastName = this.employee[i].lastName;
+      this.showEmployeeForm = true;
+      this.isLoading = false;
     }
 
     onSubmitChangeEmployeeForm(changeForm){
-    const formChange = changeForm.value;
-    this.editEmail = formChange.emailEdit;
-    this.editFirstName = formChange.firstNameEdit;
-    this.editLastName = formChange.lastNameEdit;
-    this.idEdit = formChange.idEdit;
+      this.isLoading = true;
+      const formChange = changeForm.value;
+      this.editEmail = formChange.emailEdit;
+      this.editFirstName = formChange.firstNameEdit;
+      this.editLastName = formChange.lastNameEdit;
+      this.idEdit = formChange.idEdit;
 
-    const editEmployee = {
-        email: this.editEmail,
-        firstName: this.editFirstName,
-        lastName: this.editLastName
+      const editEmployee = {
+          email: this.editEmail,
+          firstName: this.editFirstName,
+          lastName: this.editLastName
+      }
+
+      this.employee[this.employeeToEdit].email = this.editEmail;
+      this.employee[this.employeeToEdit].firstName = this.editFirstName;
+      this.employee[this.employeeToEdit].lastName = this.editLastName;
+
+
+      const url = `http://localhost:9090/employee/update/${this.idEdit}`;
+
+      this.http.put(url,editEmployee).subscribe(responseData => {});
+      this.isLoading = false;
     }
 
-    this.employee[this.employeeToEdit].email = this.editEmail;
-    this.employee[this.employeeToEdit].firstName = this.editFirstName;
-    this.employee[this.employeeToEdit].lastName = this.editLastName;
-
-
-    const url = `http://localhost:9090/employee/update/${this.idEdit}`;
-
-    this.http.put(url,editEmployee).subscribe(responseData => {
-
-    });
-  }
-
   onDeleteEmployee(deleteForm){
+    this.isLoading = true;
     const formDelete = deleteForm.value;
     const email = formDelete.emailDel;
     const url = `http://localhost:9090/employee/delete/${email}`;
@@ -132,9 +142,12 @@ export class EmployeeComponent implements OnInit {
       };
     }
     // if(contains===false) alert("No such Email");
+    this.isLoading = false;
   }
 
   onCreateEmployee(employeeForm){
+     this.isLoading = true;
+
     //put form values into variables
     const formEmployee = employeeForm.value;
     const email = formEmployee.email;
@@ -188,6 +201,7 @@ export class EmployeeComponent implements OnInit {
       console.log("Passwords do not match");
       alert("Passwords do not match");
     }
+     this.isLoading = false;
   }
 }
 

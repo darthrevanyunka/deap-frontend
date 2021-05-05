@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
     employee : Employee[] = [];
     loginName: String;
     employeeJson: any;
+    isLoading: boolean = false;
 
 
     ngOnInit(): void {
@@ -55,16 +56,19 @@ export class AppComponent implements OnInit {
     userName: any;
 
     public login() {
+      this.isLoading = true;
       this.oauthService.initLoginFlow();
 
       this.userName = this.oauthService.loadUserProfile().then((profile) => {
         return JSON.parse(JSON.stringify(profile.preferred_username));
       })
-
+      this.isLoading = false;
     }
 
     public logoff() {
+      this.isLoading = true;
       this.oauthService.logOut();
+      this.isLoading = false;
     }
 
     private configure() {

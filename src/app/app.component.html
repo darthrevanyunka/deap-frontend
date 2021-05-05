@@ -15,6 +15,9 @@
       <h3>{{loginName}} </h3>
     </div>  </div>
 </div>
+<div class ="text-center">
+  <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+</div>
 
 <router-outlet></router-outlet>
 
