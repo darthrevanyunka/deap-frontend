@@ -14,6 +14,11 @@
 
       <hr>
 
+      <div class ="text-center">
+        <app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+      </div>
+
+
       <div  *ngFor="let employeeEl of employee; let i = index">
         <a (click)="onClickEmployee()"*ngIf="showAll" style=" cursor: pointer;" class="list-group-item clearfix" >
           <div class="pull-left">
