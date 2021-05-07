@@ -22,10 +22,10 @@ export class AppComponent implements OnInit {
 
   currentApplicationVersion = environment.appVersion;
   logedIn = true;
-  logoutURL = "http://localhost:4200"
+  logoutURL = "https://frontendkeycloak.herokuapp.com/"
 
    onShowName(){
-      this.http.get<Employee[]>('http://localhost:9090/employee/name',
+      this.http.get<Employee[]>('https://springbootkeycloak.herokuapp.com/employee/name',
       ).subscribe(responseData => {
         this.employeeJson = JSON.stringify(responseData);
         this.loginName = responseData[0].firstName;
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     }
 
   authConfig: AuthConfig = {
-      issuer: 'http://localhost:8080/auth/realms/SpringBootKeycloak',
+      issuer: 'https://keycloakkeycloak.herokuapp.com/auth/realms/SpringBootKeycloak',
       redirectUri: window.location.origin + "/admin",
       postLogoutRedirectUri: this.logoutURL,
       clientId: 'spa-employee',

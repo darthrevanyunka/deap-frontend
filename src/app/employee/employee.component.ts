@@ -33,7 +33,8 @@ export class EmployeeComponent implements OnInit {
 
   onShowName(){
     this.isLoading=true;
-    this.http.get<Employee[]>('http://localhost:9090/employee/name',
+    this.http.get<Employee[]>('https://springbootkeycloak.herokuapp.com/employee/name',
+                              
     ).subscribe(responseData => {
       this.employeeJson = JSON.stringify(responseData);
       this.loginName = responseData[0].firstName;
@@ -43,7 +44,8 @@ export class EmployeeComponent implements OnInit {
 
   onShowAll(){
       this.isLoading=true;
-        this.http.get<Employee[]>('http://localhost:9090/employee/get',
+        this.http.get<Employee[]>('https://springbootkeycloak.herokuapp.com/employee/get',
+                                  
         ).subscribe(responseData => {
             this.employee = responseData;
         });
@@ -116,8 +118,9 @@ export class EmployeeComponent implements OnInit {
       this.employee[this.employeeToEdit].firstName = this.editFirstName;
       this.employee[this.employeeToEdit].lastName = this.editLastName;
 
-
-      const url = `http://localhost:9090/employee/update/${this.idEdit}`;
+      
+      
+    const url = `https://springbootkeycloak.herokuapp.com/employee/update/${this.idEdit}`;
 
       this.http.put(url,editEmployee).subscribe(responseData => {});
       this.isLoading = false;
@@ -127,7 +130,7 @@ export class EmployeeComponent implements OnInit {
     this.isLoading = true;
     const formDelete = deleteForm.value;
     const email = formDelete.emailDel;
-    const url = `http://localhost:9090/employee/delete/${email}`;
+    const url = `https://springbootkeycloak.herokuapp.com/employee/delete/${email}`;
 
     this.http.delete(url,
       ).subscribe(responseData => {
@@ -181,7 +184,7 @@ export class EmployeeComponent implements OnInit {
         const employeeJson = JSON.stringify(newEmployee);
 
         //post request to create employee
-        this.http.post('http://localhost:9090/employee/registration',
+        this.http.post('https://springbootkeycloak.herokuapp.com/employee/registration',
         newEmployee
         ).subscribe(responseData => {
         });

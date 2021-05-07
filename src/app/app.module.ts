@@ -22,7 +22,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     HttpClientModule,
     OAuthModule.forRoot({
           resourceServer: {
-              allowedUrls: ['http://localhost:9090/employee/'],
+              allowedUrls: ['https://springbootkeycloak.herokuapp.com/employee/'],
               sendAccessToken: true
           }
     })
